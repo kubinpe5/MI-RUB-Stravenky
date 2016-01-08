@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+
+body {
+    background-color: transparent;
+    background-color: #00bbcc;
+    font-size: 1.2em;
+}
+
+h1 {
+    text-align: center;
+    font-style: italic;
+
+}
