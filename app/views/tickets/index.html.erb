@@ -11,20 +11,36 @@
   <tbody>
   <% @tickets.each do |ticket| %>
       <tr>
+
         <td><%= t("date.month_names")[ticket.month.month].capitalize %> </td>
 
-          <%= form_for(ticket, remote: true) do |f| %>
+        <% if ticket.locked %>
+            <td><button disabled>Zamknuto</button></td>
+        <% else %>
             <td>
-              <%= f.number_field :count %>
-              <%= f.submit("Uložit") %>
+              <%= form_for(ticket, remote: true) do |f| %>
+
+                  <%= f.number_field :count, min: 0 %>
+                  <%= f.submit("Uložit") %>
+
+              <% end %>
             </td>
+        <% end %>
+
+        <td>
+          <% unless ticket.locked %>
+              <%= form_for(ticket, remote: true) do |f| %>
+
+                  <%= f.hidden_field :locked, value: 1 %>
+                  <%= f.submit("Uzamknout") %>
+
+              <% end %>
           <% end %>
+
+
+        </td>
 
       </tr>
   <% end %>
   </tbody>
 </table>
-
-<%= button_to "Uzamknout úpravy", action: "new" %>
-
-<br>
