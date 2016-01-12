@@ -1,0 +1,46 @@
+.form-sign {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+
+  h2 { margin-bottom: 10px; }
+  .form-control {
+    position: relative;
+    height: auto;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .top {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .middle {
+    margin: -1px 0 -1px 0;
+    border-radius: 0;
+  }
+  .bottom {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding-bottom: 10px
+  }
+  .single {
+    margin-bottom: 10px;
+    padding-bottom: 10px
+  }
+
+  .devise-errors {
+    font-size: 0.8em;
+    p {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+  }
+}
+
+.form-pw-reset {
+  max-width: 400px;
+}

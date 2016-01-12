@@ -1,0 +1,30 @@
+<h1>Evidence stravenek uživatele <%= @user.email %></h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Měsíc</th>
+    <th>Počet stravenek</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= t("date.month_names")[ticket.month.month].capitalize %> </td>
+
+          <%= form_for(ticket, remote: true) do |f| %>
+            <td>
+              <%= f.number_field :count %>
+              <%= f.submit("Uložit") %>
+            </td>
+          <% end %>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= button_to "Uzamknout úpravy", action: "new" %>
+
+<br>
