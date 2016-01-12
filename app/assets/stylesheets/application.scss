@@ -48,3 +48,22 @@ table.times>tfoot>tr>td:first-child+td {
   text-align: center;
 }
 
+/* patička */
+#footer dt:before {
+  content:"| ";
+}
+
+#footer dl:after {
+  content:" |";
+}
+
+#footer dd, #footer dt {
+  display: inline;
+}
+
+#footer dl {
+  margin-top: 1em;
+  padding: 2em;
+  background-color: #222;
+  color: white;
+}
