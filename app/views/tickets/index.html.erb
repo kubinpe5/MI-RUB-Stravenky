@@ -1,10 +1,30 @@
-<h1>Evidence stravenek uživatele <%= @user.email %></h1>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand" >Evidence stravenek</span>
+    </div>
+    <ul class="nav navbar-nav navbar-right list-inline">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
 
-<table>
+<ul>
+  <li><%= @user.email %></li>
+  <li>Odhlášení</li>
+</ul>
+
+<div class="container center">
+
+<h1 class="center heading">Evidence stravenek uživatele</h1>
+
+<table class="times table table-bordered table-striped subcontentTable">
   <thead>
   <tr>
     <th>Měsíc</th>
     <th>Počet stravenek</th>
+    <th></th>
   </tr>
   </thead>
 
@@ -15,7 +35,9 @@
         <td><%= t("date.month_names")[ticket.month.month].capitalize %> </td>
 
         <% if ticket.locked %>
-            <td><button disabled>Zamknuto</button></td>
+            <td colspan="2">
+              <button disabled>Zamknuto</button>
+            </td>
         <% else %>
             <td>
               <%= form_for(ticket, remote: true) do |f| %>
@@ -27,20 +49,20 @@
             </td>
         <% end %>
 
-        <td>
-          <% unless ticket.locked %>
+
+        <% unless ticket.locked %>
+            <td>
               <%= form_for(ticket, remote: true) do |f| %>
 
                   <%= f.hidden_field :locked, value: 1 %>
                   <%= f.submit("Uzamknout") %>
 
               <% end %>
-          <% end %>
-
-
-        </td>
+            </td>
+        <% end %>
 
       </tr>
   <% end %>
   </tbody>
 </table>
+</div>

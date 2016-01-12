@@ -2,3 +2,49 @@
 @import "bootstrap";
 
 @import "devise";
+
+.center {
+  text-align: center;
+}
+
+.heading {
+  font-size: 1.5em;
+  color: #fff;
+  opacity: none;
+  background-color: #0055ff;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  margin-bottom: 0em;
+}
+
+.heading1 {
+  font-size: 4em;
+  color: black;
+}
+
+div table.subcontentTable>thead>tr>th,
+div table.subcontentTable>tbody>tr>td,
+div table.subcontentTable>tbody>tr,
+div table.subcontentTable>tfoot>tr>td {
+  border: 1px solid #0055ff;
+}
+
+div table.subcontentTable>thead>tr>th {
+  border: 2px solid #0055ff;
+}
+
+div table.subcontentTable>tfoot {
+  font-weight: bold;
+  border-top: 2px solid #0055ff;
+}
+
+table.times>tbody>tr>td:first-child+td {
+  text-align: center;
+}
+
+table.times>tfoot>tr>td:first-child+td {
+  text-align: center;
+}
+
