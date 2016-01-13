@@ -1,11 +1,25 @@
 <nav class="navbar navbar-inverse container">
   <div class="container-fluid">
     <div class="navbar-header">
-      <span class="navbar-brand" >Evidence stravenek</span>
+      <span class="navbar-brand">Evidence stravenek</span>
     </div>
     <ul class="nav navbar-nav navbar-right list-inline">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+      <% if user_signed_in? %>
+          <li>
+            <%= link_to(destroy_user_session_path, :method => :delete) do %>
+                <span class="glyphicon glyphicon-log-out"></span>Logout
+            <% end %>
+          </li>
+      <% else %>
+          <li>
+            <%= link_to(new_user_session_path) do %>
+                <span class="glyphicon glyphicon-log-in"></span>Login
+            <% end %>
+          </li>
+      <% end %>
+
+      <li color="white">Rok: <%= @year %></li>
     </ul>
   </div>
 </nav>
@@ -18,54 +32,54 @@
 
 <div class="container center">
 
-<h1 class="center heading">Evidence stravenek uživatele</h1>
+  <h1 class="center heading">Evidence stravenek uživatele</h1>
 
-<table class="times table table-bordered table-striped subcontentTable">
-  <thead>
-  <tr>
-    <th>Měsíc</th>
-    <th>Počet stravenek</th>
-    <th></th>
-  </tr>
-  </thead>
+  <table class="times table table-bordered table-striped subcontentTable">
+    <thead>
+    <tr>
+      <th>Měsíc</th>
+      <th>Počet stravenek</th>
+      <th></th>
+    </tr>
+    </thead>
 
-  <tbody>
-  <% @tickets.each do |ticket| %>
-      <tr>
+    <tbody>
+    <% @tickets.each do |ticket| %>
+        <tr>
 
-        <td><%= t("date.month_names")[ticket.month.month].capitalize %> </td>
+          <td><%= t("date.month_names")[ticket.month.month].capitalize %> </td>
 
-        <% if ticket.locked %>
-            <td colspan="2">
-              <button disabled>Zamknuto</button>
-            </td>
-        <% else %>
-            <td>
-              <%= form_for(ticket, remote: true) do |f| %>
+          <% if ticket.locked %>
+              <td colspan="2">
+                <button class="btn btn-primary disabled" disabled>Zamknuto</button>
+              </td>
+          <% else %>
+              <td>
+                <%= form_for(ticket, remote: true) do |f| %>
 
-                  <%= f.number_field :count, min: 0 %>
-                  <%= f.submit("Uložit") %>
+                    <%= f.number_field :count, min: 0 %>
+                    <%= f.submit("Uložit") %>
 
-              <% end %>
-            </td>
-        <% end %>
+                <% end %>
+              </td>
+          <% end %>
 
 
-        <% unless ticket.locked %>
-            <td>
-              <%= form_for(ticket, remote: true) do |f| %>
+          <% unless ticket.locked %>
+              <td>
+                <%= form_for(ticket, remote: true) do |f| %>
 
-                  <%= f.hidden_field :locked, value: 1 %>
-                  <%= f.submit("Uzamknout") %>
+                    <%= f.hidden_field :locked, value: 1 %>
+                    <%= f.submit("Uzamknout", class: 'btn btn-primary active') %>
 
-              <% end %>
-            </td>
-        <% end %>
+                <% end %>
+              </td>
+          <% end %>
 
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>
 
 <div id="footer">
