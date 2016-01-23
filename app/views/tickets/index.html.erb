@@ -25,8 +25,24 @@
 
       <li>
         <ul class="nav navbar-nav navbar-right list-inline">
-          <li><a href="#"><span class="glyphicon glyphicon-calendar"></span>Rok: <%= @year %></a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-calendar"></span>Rok: 2017</a></li>
+          <li>
+            <%= link_to(tickets_path(year: @year - 1)) do %>
+                <span class="glyphicon glyphicon-calendar"></span>Rok: <%= @year - 1 %>
+            <% end %>
+          </li>
+
+          <li>
+            <!-- Tady změnit link na normál aby to bylo jiný -->
+            <a href="#"><span class="glyphicon glyphicon-calendar"></span>Rok: <%= @year %></a>
+          </li>
+
+
+          <li>
+            <%= link_to(tickets_path(year: @year + 1)) do %>
+                <span class="glyphicon glyphicon-calendar"></span>Rok: <%= @year + 1 %>
+            <% end %>
+          </li>
+
         </ul>
       </li>
 
