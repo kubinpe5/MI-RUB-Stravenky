@@ -7,6 +7,10 @@
 
       <% if user_signed_in? %>
           <li>
+            <a><span class="glyphicon glyphicon-user"></span><%= @user.email %></a>
+          </li>
+
+          <li>
             <%= link_to(destroy_user_session_path, :method => :delete) do %>
                 <span class="glyphicon glyphicon-log-out"></span>Logout
             <% end %>
@@ -19,16 +23,16 @@
           </li>
       <% end %>
 
-      <li color="white">Rok: <%= @year %></li>
+      <li>
+        <ul class="nav navbar-nav navbar-right list-inline">
+          <li><a href="#"><span class="glyphicon glyphicon-calendar"></span>Rok: <%= @year %></a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-calendar"></span>Rok: 2017</a></li>
+        </ul>
+      </li>
+
     </ul>
   </div>
 </nav>
-
-<ul>
-  <li><%= @user.email %></li>
-  <li>Odhlášení</li>
-  <li>Rok</li>
-</ul>
 
 <div class="container center">
 
@@ -37,9 +41,9 @@
   <table class="times table table-bordered table-striped subcontentTable">
     <thead>
     <tr>
-      <th>Měsíc</th>
-      <th>Počet stravenek</th>
-      <th></th>
+      <th class="center">Měsíc</th>
+      <th class="center">Počet stravenek</th>
+      <th class="center">Uložit volbu</th>
     </tr>
     </thead>
 

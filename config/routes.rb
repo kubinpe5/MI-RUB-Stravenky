@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "tickets#index"
+  root to: 'tickets#index'
   resources :tickets
+  get 'users' => 'users#index'
   # resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
