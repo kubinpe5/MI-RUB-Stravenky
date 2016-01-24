@@ -99,6 +99,15 @@
         </tr>
     <% end %>
     </tbody>
+
+    <% if user.admin == true %>
+        <tfoot>
+        <tr>
+          <td>
+            <%= link_to "Celkový přehled", user_path(users_url) %>
+        </tr>
+        </tfoot>
+    <% end %>
   </table>
 </div>
 
