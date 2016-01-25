@@ -1,0 +1,12 @@
+manuál:
+
+	mám tam factory girl na vytváření modelů
+	mám testy na controller
+				 model
+				 routing
+
+
+OmniAuth:
+	
+	dodělat: jenom nastavím devise, přes email jsi mi neodpověděl
+	

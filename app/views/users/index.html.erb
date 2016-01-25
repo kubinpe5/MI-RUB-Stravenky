@@ -1,0 +1,117 @@
+<nav class="navbar navbar-inverse container">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand">Evidence stravenek</span>
+    </div>
+    <ul class="nav navbar-nav navbar-right list-inline">
+
+      <% if user_signed_in? %>
+          <li>
+            <a><span class="glyphicon glyphicon-user"></span><%= current_user.email %></a>
+          </li>
+
+          <li>
+            <%= link_to(destroy_user_session_path, :method => :delete) do %>
+                <span class="glyphicon glyphicon-log-out"></span>Logout
+            <% end %>
+          </li>
+      <% else %>
+          <li>
+            <%= link_to(new_user_session_path) do %>
+                <span class="glyphicon glyphicon-log-in"></span>Login
+            <% end %>
+          </li>
+      <% end %>
+
+      <li>
+        <ul class="nav navbar-nav navbar-right list-inline">
+          <li>
+            <%= link_to(users_path(year: @year - 1)) do %>
+                <span class="glyphicon glyphicon-minus"></span>
+            <% end %>
+          </li>
+
+          <li>
+            <!-- Tady změnit link na normál aby to bylo jiný -->
+            <a href="#"><span class="glyphicon glyphicon-calendar"></span>Rok: <%= @year %></a>
+          </li>
+
+
+          <li>
+            <%= link_to(users_path(year: @year + 1)) do %>
+                <span class="glyphicon glyphicon-plus"></span>
+            <% end %>
+          </li>
+
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<div class="container center">
+
+  <h1 class="center heading">Users model</h1>
+
+  <table class="times table table-bordered table-striped subcontentTable">
+    <thead>
+    <tr>
+      <th>Zaměstnanec</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <% @users.each do |user| %>
+        <tr>
+          <td> <%= user.email %></td>
+          <% user.tickets_for(@year_interval).each do |ticket| %>
+
+              <% if ticket.locked %>
+                  <td style="background-color: limegreen"> <%= ticket.count %> </td>
+                  <%else %>
+                  <td style="background-color: red"> <%= ticket.count %> </td>
+              <% end %>
+
+          <% end %>
+        </tr>
+    <% end %>
+    </tbody>
+    <% if current_user.admin? %>
+        <tfoot>
+        <tr>
+          <td colspan="8">
+            <%= link_to "Moje stravenky", tickets_path() %>
+          </td>
+          <td colspan="5">
+            <%= link_to "Export do csv", users_path(format: :csv) %>
+          </td>
+        </tr>
+        </tfoot>
+    <% end %>
+  </table>
+</div>
+
+<div id="footer">
+  <div class="container center">
+    <dl class="text-muted">
+      <dt>Copyright</dt>
+      <dd>© 2015 - 2016</dd>
+      <dt>Webmaster</dt>
+      <dd>Kubín Petr</dd>
+    </dl>
+  </div>
+</div>
