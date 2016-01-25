@@ -27,7 +27,7 @@
         <ul class="nav navbar-nav navbar-right list-inline">
           <li>
             <%= link_to(tickets_path(year: @year - 1)) do %>
-                <span class="glyphicon glyphicon-calendar"></span>Rok: <%= @year - 1 %>
+                <span class="glyphicon glyphicon-minus"></span>
             <% end %>
           </li>
 
@@ -39,7 +39,7 @@
 
           <li>
             <%= link_to(tickets_path(year: @year + 1)) do %>
-                <span class="glyphicon glyphicon-calendar"></span>Rok: <%= @year + 1 %>
+                <span class="glyphicon glyphicon-plus"></span>
             <% end %>
           </li>
 
@@ -100,11 +100,15 @@
     <% end %>
     </tbody>
 
-    <% if user.admin == true %>
+    <% if @user.admin? %>
         <tfoot>
         <tr>
+          <td colspan="2">
+            <%= link_to "Celkový přehled", users_path() %>
+          </td>
           <td>
-            <%= link_to "Celkový přehled", user_path(users_url) %>
+            <%= link_to "Export do csv", tickets_path(format: :csv) %>
+          </td>
         </tr>
         </tfoot>
     <% end %>
